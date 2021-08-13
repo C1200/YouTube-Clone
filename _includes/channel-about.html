@@ -1,0 +1,122 @@
+{% capture about %}
+<style>
+    .content {
+        display: flex;
+    }
+
+    section {
+        font-size: 14px;
+    }
+
+    section.first {
+        flex-grow: 1;
+        padding-right: 96px;
+    }
+
+    section.last {
+        flex: 1;
+    }
+
+    section header {
+        font-size: 16px;
+        margin: 24px 0;
+    }
+
+    section > div {
+        border-bottom: 1px solid #d8d8d8;
+        padding-bottom: 32px;
+    }
+
+    .details table {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .details table tr {
+        height: 42px;
+    }
+
+    .details table .label {
+        padding-right: 32px;
+    }
+
+    .lnks {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .lnks p {
+        width: 50%;
+        margin: 0 0 24px;
+    }
+
+    .stats {
+        border: 0;
+    }
+
+    .stats header {
+        margin: 24px 0 12px;
+    }
+
+    .stats .stat {
+        margin: 0;
+        padding: 12px 0;
+        border-top: 1px solid #d8d8d8;
+        border-bottom: 1px solid #d8d8d8;
+    }
+
+    .stats .report {
+        margin: 0;
+        padding: 12px 0;
+    }
+
+    .stats .report a {
+        color: #999;
+    }
+</style>
+
+<section class="first">
+    <div class="description">
+        <header>Description</header>
+
+        {{ page.description }}
+    </div>
+    <div class="details">
+        <header>Details</header>
+
+        <table>
+            <tr>
+                <td class="label">For business enquiries:</td>
+                <td><a href="mailto:{{ page.email }}">{{ page.email }}</a></td>
+            </tr>
+            <tr>
+                <td class="label">Location:</td>
+                <td>{{ page.location }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="links">
+        <header>Links</header>
+
+        <div class="lnks">
+        {% for link in page.links %}
+            {{ link | markdownify }}
+        {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="last">
+    <div class="stats">
+        <header>Stats</header>
+
+        <p class="stat">Joined {{ page.join_date | date_to_string }}</p>
+        <p class="stat">597 views</p>
+        <p title="Report User" class="report">
+            <a href="/YouTube-Clone/report?type=user&userId={{ page.uid }}">
+                <span class="material-icons">flag</span>
+            </a>
+        </p>
+    </div>
+</section>
+{% endcapture %}
+{{ about | escape }}

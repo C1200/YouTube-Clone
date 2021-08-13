@@ -1,0 +1,20 @@
+title: YouTube Clone
+email: coreyw.ultimatemedia@gmail.com
+description: >-
+  A clone of YouTube.
+baseurl: "/YouTube-Clone"
+url: "http://localhost:4000"
+twitter_username: C1200Games
+github_username:  C1200
+
+plugins:
+  - jekyll-redirect-from
+
+collections:
+  channel:
+    output: true
+  watch:
+    output: true
+
+repo: https://github.com/C1200/YouTube-Clone
+report_url: https://github.com/C1200/photoalbum/issues/new

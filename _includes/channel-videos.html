@@ -1,0 +1,47 @@
+{% capture videos %}
+{% assign channel_videos = site.watch | where: 'channel', page.uid %}
+
+<style>
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .video {
+        width: 210px;
+        margin-right: 4px;
+        margin-bottom: 24px;
+    }
+
+    .video img {
+        width: 100%;
+    }
+
+    .video .title {
+        margin: 8px 0 8px;
+        color: #000;
+        font-size: 16px;
+        padding-right: 24px;
+    }
+
+    .video .details {
+        margin: 0;
+        color: #606060;
+        font-size: 14px;
+        padding-right: 24px;
+    }
+</style>
+
+{% for video in channel_videos %}
+    <a class="video" href="{{ video.id | relative_url }}">
+        <img src="{{ video.thumbnail }}">
+        <p class="title">{{ video.title }}</p>
+        <p class="details">
+            {{ video.views }} view{% if video.views == 0 or video.views > 1 %}s{% endif %}
+            &centerdot;
+            <span class="publish-date">{{ video.publish_date }}</span>
+        </p>
+    </a>
+{% endfor %}
+{% endcapture %}
+{{ videos | escape }}

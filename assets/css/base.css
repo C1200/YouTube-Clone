@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    background: #fff;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    height: 56px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.navbar * {
+    color: #666;
+    font-size: 24px;
+}
+
+.navbar .container {
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar .logo {
+    height: 20px;
+    width: 82px;
+}
+
+.navbar .content-region {
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-left: 4px;
+    height: 30px;
+}
+
+.navbar > .container > div {
+    display: flex;
+    align-items: center;
+}
+
+.navbar > .container > div > a {
+    padding: 8px;
+}
+
+.navbar .center {
+    flex-grow: .5;
+}
+
+.navbar .center form {
+    width: 100%;
+}

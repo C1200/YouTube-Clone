@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | YouTube</title>
+
+    <script src="/YouTube-Clone/assets/js/moment.min.js"></script>
+
+    <link rel="shortcut icon" href="/YouTube-Clone/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/YouTube-Clone/assets/css/global.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    {{ content }}
+
+    <script>
+        document.querySelectorAll(".content-region").forEach((elem) => {
+            elem.innerHTML = navigator.language.split("-")[1];
+        });
+    </script>
+</body>
+</html>

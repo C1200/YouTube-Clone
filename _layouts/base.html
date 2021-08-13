@@ -1,0 +1,138 @@
+---
+layout: default
+---
+
+<script src="/YouTube-Clone/assets/js/base.js"></script>
+<link rel="stylesheet" href="/YouTube-Clone/assets/css/base.css">
+
+<nav class="navbar">
+    <div class="container">
+        <div class="start">
+            <a href="javascript:openDrawer()" class="material-icons">menu</a>
+            <a title="YouTube Home" href="/YouTube-Clone/" style="display:flex;align-items:center;">
+                <span title="YouTube Home" class="logo"></span>
+                <span class="content-region">GB</span>
+            </a>
+        </div>
+
+        <div class="center">
+            <form class="search" action="/YouTube-Clone/search" method="get">
+                <div class="searchinput">
+                    <input type="text" name="q" placeholder="Search">
+                </div>
+                <button type="submit" class="material-icons">search</button>
+            </form>
+        </div>
+
+        <div class="end">
+            <a href="javascript:openMenu('apps-menu')" class="material-icons">apps</a>
+            <a href="javascript:openSettings()" class="material-icons">more_vert</a>
+        </div>
+
+        <div class="context-menu" id="apps-menu">
+            <div class="items">
+                <a href="https://c1200.js.org/">
+                    <span class="material-icons">language</span>
+                    My Website
+                </a>
+            </div>
+            <span class="separator"></span>
+            <div class="items">
+                <a href="https://c1200.js.org/projects">
+                    <span class="material-icons">work</span>
+                    My Projects
+                </a>
+                <a href="https://c1200.js.org/contact">
+                    <span class="material-icons">mail</span>
+                    Contact Me
+                </a>
+            </div>
+            <span class="separator"></span>
+            <div class="items">
+                <a href="https://c1200.js.org/projects/photoalbum">
+                    <span class="material-icons">photo_library</span>
+                    PhotoAlbum
+                </a>
+                <a href="https://c1200.js.org/projects/repbot">
+                    <span class="material-icons">smart_toy</span>
+                    RepBot
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="drawer"></nav>
+
+{% if page.layout == "channel" %}
+<div class="header">
+    {% if page.banner %}   
+    <div class="banner" style="background:url('{{ page.banner }}');"></div>
+    {% endif %}
+    <div class="channel-details">
+        <img class="avatar" src="{{ page.avatar }}" onerror="this.src = '/YouTube-Clone/assets/img/defaultavatar.jpg'">
+        <p class="ns">
+            <span class="name">{{ page.title }}</span>
+            <span class="subs">
+                <script>
+                    var subs = parseInt("{{ page.subs }}");
+
+                    function intToString(num) {
+                        if (num < 1000) {
+                            return num;
+                        }
+                        var si = [
+                        {v: 1E3, s: "K"},
+                        {v: 1E6, s: "M"},
+                        {v: 1E9, s: "B"},
+                        {v: 1E12, s: "T"},
+                        {v: 1E15, s: "P"},
+                        {v: 1E18, s: "E"}
+                        ];
+                        var i;
+                        for (i = si.length - 1; i > 0; i--) {
+                            if (num >= si[i].v) {
+                                break;
+                            }
+                        }
+                        return (num / si[i].v).toFixed(2).replace(/\.0+$|(\.[0-9]*[1-9])0+$/, "$1") + si[i].s;
+                    }
+
+                    document.querySelector(".subs").innerHTML = `${intToString(subs)} Subscriber${subs === 0 || subs > 1 ? "s" : ""}`
+                </script>
+            </span>
+        </p>
+        <button class="subscribe"></button>
+    </div>
+</div>
+
+<div class="sticky">
+    <a href="#home">Home</a>
+    <a href="#videos">Videos</a>
+    <a href="#playlists">Playlists</a>
+    <a href="#channels">Channels</a>
+    <a href="#community">Community</a>
+    <a href="#about">About</a>
+</div>
+
+<script>
+    function activeLinks() {
+        document.querySelectorAll(".sticky a").forEach((link) => {
+            var href = link.getAttribute("href").substr(1);
+
+            if ((location.hash.substr(1).length === 0 && href === "home") || href === location.hash.substr(1).toLowerCase()) {
+                link.className = "active";
+            } else {
+                link.className = "";
+            }
+        });
+    }
+
+    activeLinks();
+    window.addEventListener("hashchange", () => activeLinks());
+</script>
+{% endif %}
+
+<main>
+    {{ content }}
+</main>

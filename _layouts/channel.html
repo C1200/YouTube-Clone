@@ -1,0 +1,43 @@
+---
+layout: base
+---
+
+<link rel="stylesheet" href="/YouTube-Clone/assets/css/channel.css">
+
+<div class="content"></div>
+
+<div style="display:none;">
+    <div id="home">{% include channel-home.html %}</div>
+    <div id="videos">{% include channel-videos.html %}</div>
+    <div id="playlists"></div>
+    <div id="channels"></div>
+    <div id="community"></div>
+    <div id="about">{% include channel-about.html %}</div>
+</div>
+
+<script>
+    function videosOnLoad() {
+        document.querySelectorAll(".publish-date").forEach((date) => {
+            date.innerText = moment(date.innerText).fromNow();
+        });
+    }
+</script>
+
+<script>
+    if (location.pathname.endsWith(".html")) {
+        location.replace(location.pathname.substr(0, location.pathname.length - 5) + location.hash);
+    }
+
+    var content = document.querySelector(".content");
+
+    function changeContent() {
+        var page = location.hash.substr(1) || "home";
+
+        content.innerHTML = document.getElementById(page).innerText;
+
+        if (page === "videos") videosOnLoad();
+    }
+
+    changeContent();
+    window.addEventListener("hashchange", () => changeContent());
+</script>

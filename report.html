@@ -1,0 +1,31 @@
+---
+layout: default
+title: Report
+permalink: /report
+---
+
+<script>
+    var reportUrl = "{{ site.report_url }}";
+    var params = new URLSearchParams(location.search);
+
+    var types = {
+        video: {
+            title: "Video Report",
+            body: "**What is the ID of the video you would like to report?**\n$videoId\n\n**Why are you reporting this video?**\n",
+        },
+        user: {
+            title: "User Report",
+            body: "**What is the ID of the user you would like to report?**\n$userId\n\n**Why are you reporting this user?**\n",
+        },
+    }
+
+    if (types[params.get("type")]) {
+        var url = reportUrl;
+        url += `?title=${encodeURI(types[params.get("type")].title)}`;
+        url += `&body=${encodeURI(types[params.get("type")].body.replace(/\$\w{1,20}/gi, (x) => params.get(x.substr(1))))}`;
+
+        location.replace(url);
+    } else {
+        alert("Invalid report type!");
+    }
+</script>

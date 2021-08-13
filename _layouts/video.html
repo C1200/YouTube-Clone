@@ -1,0 +1,123 @@
+---
+layout: base
+---
+
+<link rel="stylesheet" href="/YouTube-Clone/assets/css/video.css">
+
+<div class="content">
+    <div class="main">
+        <video controls autoplay src="{{ page.file }}"></video>
+        <div class="info">
+            <p class="title">{{ page.title }}</p>
+            <div class="flex">
+                <p class="details">
+                    {{ page.views }} view{% if page.views == 0 or page.views > 1 %}s{% endif %}
+                    &centerdot;
+                    <span class="publish-date">{{ page.publish_date }}</span>
+                </p>
+                <div class="buttons" style="position:relative;">
+                    <button title="I like this">
+                        <span class="material-icons">thumb_up</span>
+                        0
+                    </button>
+                    <button title="I dislike this">
+                        <span class="material-icons">thumb_down</span>
+                        0
+                    </button>
+                    <button title="Share">
+                        <span class="material-icons" style="transform:rotateY(180deg);">reply</span>
+                        Share
+                    </button>
+                    <button title="Save">
+                        <span class="material-icons">playlist_add</span>
+                        Save
+                    </button>
+                    <button onclick="openMenu('video-menu')">
+                        <span class="material-icons">more_horiz</span>
+                    </button>
+
+                    <div class="context-menu" id="video-menu" style="top: 40px;right: 0;width: 134px;">
+                        <div class="items">
+                            <a href="/YouTube-Clone/report?type=video&videoId={{ page.vid }}">
+                                <span class="material-icons">flag</span>
+                                Report
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="description-box">
+            {% assign c = site.channel | where: 'uid', page.channel %}
+            <div class="top">
+                <a href="{{ c[0].id | relative_url }}"><img src="{{ c[0].avatar }}" onerror="this.src = '/YouTube-Clone/assets/img/defaultavatar.jpg'"></a>
+                <div>
+                    <p class="name"><a href="{{ c[0].id | relative_url }}">{{ c[0].title }}</a></p>
+                    <p class="subs">
+                        <script>
+                            var subs = parseInt("{{ c[0].subs }}");
+        
+                            function intToString(num) {
+                                if (num < 1000) {
+                                    return num;
+                                }
+                                var si = [
+                                {v: 1E3, s: "K"},
+                                {v: 1E6, s: "M"},
+                                {v: 1E9, s: "B"},
+                                {v: 1E12, s: "T"},
+                                {v: 1E15, s: "P"},
+                                {v: 1E18, s: "E"}
+                                ];
+                                var i;
+                                for (i = si.length - 1; i > 0; i--) {
+                                    if (num >= si[i].v) {
+                                        break;
+                                    }
+                                }
+                                return (num / si[i].v).toFixed(2).replace(/\.0+$|(\.[0-9]*[1-9])0+$/, "$1") + si[i].s;
+                            }
+        
+                            document.querySelector(".subs").innerHTML = `${intToString(subs)} Subscriber${subs === 0 || subs > 1 ? "s" : ""}`
+                        </script>
+                    </p>
+                </div>
+            </div>
+            <div class="bottom">
+                {{ page.description | newline_to_br }}
+
+                <script>
+                    function urlToHyperlink(text) {
+                        var exp = /(\b(https?):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+                        return text.replace(exp,"<a href='$1'>$1</a>"); 
+                    }
+
+                    document.querySelector(".bottom").innerHTML = urlToHyperlink(document.querySelector(".bottom").innerText).replace(/\n/g, "<br>");
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="recommended">
+        {% for video in site.watch %}
+            <a class="video" href="{{ video.id | relative_url }}">
+                <img src="{{ video.thumbnail }}">
+                <div>
+                    <p class="title">{{ video.title }}</p>
+                    <p class="details">
+                        {% assign channel = site.channel | where: 'uid', video.channel %}
+                        {{ channel[0].title }}<br>
+                        {{ video.views }} view{% if video.views == 0 or video.views > 1 %}s{% endif %}
+                        &centerdot;
+                        <span class="publish-date">{{ video.publish_date }}</span>
+                    </p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll(".publish-date").forEach((date) => {
+        date.innerText = moment(date.innerText).fromNow();
+    });
+</script>

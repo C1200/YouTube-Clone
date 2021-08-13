@@ -1,0 +1,54 @@
+---
+permalink: /404.html
+layout: default
+title: 404 Not Found
+---
+
+<style>
+  body {
+    background: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+  }
+
+  .container {
+    width: 460px;
+  }
+
+  #logo-container {
+    margin-right: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .content-region {
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+  }
+</style>
+
+<div class="container">
+  <img src="/YouTube-Clone/assets/img/monkey.png">
+  <p>
+    This page isn't available. Sorry about that.<br>
+    Try searching for something else.
+  </p>
+  <div class="footer">
+    <a id="logo-container" href="/YouTube-Clone/" title="YouTube Home">
+      <span class="logo" title="YouTube Home"></span>
+      <span class="content-region">GB</span>
+    </a>
+    <form class="search" action="/YouTube-Clone/search" method="get" style="width:290px;float:right;">
+      <div class="searchinput">
+          <input type="text" name="q" placeholder="Search">
+      </div>
+      <button type="submit" class="material-icons">search</button>
+  </form>
+  </div>
+</div>

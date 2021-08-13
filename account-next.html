@@ -1,0 +1,40 @@
+---
+layout: base
+title: Generate an account
+permalink: /account/next
+---
+
+<style>
+    body {
+        height: 100vh;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+</style>
+
+<ol>
+    <li>Click <a class="ghlink" target="_blank">here</a>.</li>
+    <li>Click the green button to fork the repository.</li>
+    <li>Click the commit changes button. You may need to press enter at the end of the file to get the button to work.</li>
+    <li>Click the create pull request button.</li>
+    <li>Optionally, change the title and/or the description. Then click create pull request.</li>
+</ol>
+
+<script>
+    var search = new URLSearchParams(location.search);
+    var file = "---\nlayout: channel\nuid: $uid\ntitle: $name\ndescription: |\navatar: \nbanner: \nsubs: 0\nemail: $email\nlocation: $location\nlinks: []\njoin_date: $joindate\n---";
+
+    var params = {
+        uid: search.get("uid"),
+        name: search.get("name"),
+        email: search.get("email"),
+        location: search.get("location"),
+        joindate: new Date().toISOString(),
+    }
+
+    document.querySelector(".ghlink").href = `{{ site.repo }}/new/main?filename=_channel/${params.uid}.md&value=${encodeURI(file.replace(/\$\w{1,}/gi, (x) => params[x.substr(1)]))}`;
+</script>
