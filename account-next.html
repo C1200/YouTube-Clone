@@ -36,5 +36,5 @@ permalink: /account/next
         joindate: new Date().toISOString(),
     }
 
-    document.querySelector(".ghlink").href = `{{ site.repo }}/new/main?filename=_channel/${params.uid}.md&value=${encodeURI(file.replace(/\$\w{1,}/gi, (x) => params[x.substr(1)]))}`;
+    document.querySelector(".ghlink").href = `https://github.com/{{ site.repo }}/new/main?filename=_channel/${params.uid}.md&value=${encodeURI(file.replace(/\$\w{1,}/gi, (x) => params[x.substr(1)]))}`;
 </script>

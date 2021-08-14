@@ -16,5 +16,5 @@ collections:
   watch:
     output: true
 
-repo: https://github.com/C1200/YouTube-Clone
+repo: C1200/YouTube-Clone
 report_url: https://github.com/C1200/YouTube-Clone/issues/new
