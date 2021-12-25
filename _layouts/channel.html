@@ -18,7 +18,7 @@ layout: base
 <script>
     function videosOnLoad() {
         document.querySelectorAll(".publish-date").forEach((date) => {
-            date.innerText = moment.utc(date.innerText).fromNow();
+            date.innerText = moment(date.innerText, moment.ISO_8601).fromNow();
         });
     }
 </script>
