@@ -132,6 +132,6 @@ layout: base
 
 <script>
     document.querySelectorAll(".publish-date").forEach((date) => {
-        date.innerText = moment(date.innerText).fromNow();
+        date.innerText = moment.utc(date.innerText).fromNow();
     });
 </script>
