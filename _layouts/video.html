@@ -99,6 +99,7 @@ layout: base
         <div class="comments">
             {% assign comments = site.data.comments[page.vid] %}
             {% for comment in comments %}
+            {{ comment | inspect }}
             <div class="comment">
                 <p class="top">
                     <span class="nickname">{{ comment.nickname }}</span>
