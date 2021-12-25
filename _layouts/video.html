@@ -99,14 +99,13 @@ layout: base
         <div class="comments">
             {% assign comments = site.data.comments[page.vid] %}
             {% for comment in comments %}
-            {{ comment | inspect }}
             <div class="comment">
                 <p class="top">
-                    <span class="nickname">{{ comment.nickname }}</span>
-                    <span class="publish-date">{{ comment.timestamp }}</span>
+                    <span class="nickname">{{ comment[1].nickname }}</span>
+                    <span class="publish-date">{{ comment[1].timestamp }}</span>
                 </p>
                 <p class="bottom">
-                    {{ comment.message }}
+                    {{ comment[1].message }}
                 </p>
             </div>
             {% endfor %}
