@@ -1,5 +1,5 @@
 ---
-layout: video-api
+layout: video
 vid: WVBDamGv8F
 title: I Made A YouTube Clone
 description: |
