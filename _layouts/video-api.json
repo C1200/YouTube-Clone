@@ -1,7 +1,7 @@
 ---
 layout: none
 ---
-{{ assign channel = site.channel | where: "uid", page.channel }}
+{{ assign channel = site.channel | where: "uid", page.channel | first }}
 {
     "id": {{ page.vid | jsonify }},
     "title": {{ page.title | jsonify }},
