@@ -5,7 +5,7 @@ permalink: /watch
 
 <script>
     var query = new URLSearchParams(location.search);
-    fetch(`/watch/${query.get("v")}`).then(async res => {
+    fetch(`{{ "/watch" | relative_url }}/${query.get("v")}`).then(async res => {
         document.documentElement.innerHTML = await res.text();
     });
 </script>
