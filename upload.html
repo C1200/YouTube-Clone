@@ -1,0 +1,65 @@
+---
+layout: base
+title: Generate an account
+permalink: /account
+---
+
+<style>
+    .upload section {
+        margin: 5px;
+    }
+
+    .upload input {
+        width: 200px;
+        margin: 5px;
+    }
+
+    .upload button {
+        width: 200px;
+        margin: 10px;
+    }
+
+    .star::before {
+        content: '*';
+        color: red;
+        font-weight: 400;
+    }
+</style>
+
+<div style="text-align:center;">
+    <h1 style="margin-bottom: 0;">Upload a video</h1>
+    <p style="margin-top: 0;"><b class="star"></b> = required</p>
+
+    <form class="upload" action="/YouTube-Clone/upload/next" method="GET">
+        <input
+            type="text"
+            name="vid"
+            id="vid"
+            style="display: none;"
+            required
+        >
+        
+        <label for="title">Title<b class="star"></b>:</label>
+        <input
+            type="text"
+            name="title"
+            id="title"
+            required
+        ><br>
+
+        <label for="description">Description:</label>
+        <input
+            type="text"
+            name="email"
+            id="email"
+        ><br>
+
+        <button type="submit">Next</button>
+    </form>
+</div>
+
+<script>
+    var uidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_".split("");
+
+    document.getElementById("uid").value = "UCxxxxxxxxxxxxxxxxxxxxxx".replace(/x/gi, () => uidChars[Math.floor(Math.random() * uidChars.length)]);
+</script>
