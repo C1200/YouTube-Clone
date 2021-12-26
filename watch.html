@@ -1,0 +1,11 @@
+---
+layout: none
+permalink: /watch
+---
+
+<script>
+    var query = new URLSearchParams(location.search);
+    fetch(`/watch/${query.get("v")}`).then(async res => {
+        document.documentElement.innerHTML = await res.text();
+    });
+</script>
