@@ -97,18 +97,20 @@ layout: base
             </div>
         </div>
         <div class="comments">
-            {% assign comments = site.data.comments[page.vid] %}
-            {% for comment in comments %}
-            <div class="comment">
-                <p class="top">
-                    <span class="nickname">{{ comment[1].nickname }}</span>
-                    <span class="publish-date">{{ comment[1].timestamp }}</span>
-                </p>
-                <p class="bottom">
-                    {{ comment[1].message }}
-                </p>
-            </div>
-            {% endfor %}
+            <script src="https://giscus.app/client.js"
+                data-repo="C1200/YouTube-Clone"
+                data-repo-id="MDEwOlJlcG9zaXRvcnkzOTU2OTY1NTQ="
+                data-category="Video Comments"
+                data-category-id="DIC_kwDOF5XZqs4CAbpC"
+                data-mapping="specific"
+                data-term="{{ page.vid }}"
+                data-reactions-enabled="0"
+                data-emit-metadata="0"
+                data-theme="light"
+                data-lang="en"
+                crossorigin="anonymous"
+                async>
+            </script>
         </div>
     </div>
     <div class="recommended">
