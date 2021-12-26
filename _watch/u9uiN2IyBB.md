@@ -1,5 +1,5 @@
 ---
-layout: video
+layout: video-api
 vid: u9uiN2IyBB
 title: My Minecraft Server Manager
 description: |
